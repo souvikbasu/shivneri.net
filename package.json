@@ -5,11 +5,8 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router": "^2.6.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14",
-    "webpack": "^2.1.0-beta.26",
-    "webpack-dev-server": "2.1.0-beta.10"
+    "react-scripts": "1.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

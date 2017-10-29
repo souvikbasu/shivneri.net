@@ -14,6 +14,6 @@ const Fort = (props) => {
         </div>
 
     )
-}
+};
 
 export default Fort;
