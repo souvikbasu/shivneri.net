@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
 import './App.css';
-import Main from "../Main/Main";
-import {Link} from "react-router-dom";
+import { Link } from 'react-router'
+
 
 class App extends Component {
     render() {
@@ -16,7 +17,7 @@ class App extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Main/>
+                {this.props.children}
             </div>
         );
     }
