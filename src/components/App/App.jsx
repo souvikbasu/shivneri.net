@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import { Link } from 'react-router'
+import {Link, IndexLink} from 'react-router';
 
 
 class App extends Component {
@@ -10,12 +10,12 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <nav>
-                        <ul>
-                            <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/signin'>Sign In</Link></li>
-                            <li><Link to='/signout'>Sign Out</Link></li>
-                        </ul>
-                    </nav>
+                        <IndexLink to="/" activeClassName="active">Home</IndexLink>
+                        {" | "}
+                        <Link to="/signin" activeClassName="active">Sign In</Link>
+                        {" | "}
+                        <Link to="/signout" activeClassName="active">Sign Out</Link>
+                 </nav>
                 </header>
                 {this.props.children}
             </div>
