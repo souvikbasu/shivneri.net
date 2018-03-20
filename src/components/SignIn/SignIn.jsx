@@ -1,15 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
+import TextInput from '../common/TextInput';
 
-class SignIn extends Component {
-  render() {
+
+const SignIn = ({ customerInfo, onChange, errors,saving ,onSumit}) => {
     return (
-      <div className="SignIn">
-        <header className="SignIn-header">
-          <h1 className="SignIn-title">Login</h1>
-        </header>
-      </div>
+        <form>  
+            <TextInput
+                name="email"
+                label="email"
+                value={customerInfo.email}
+                onChange={onChange}
+                error={errors.email}
+            />
+
+            <TextInput
+                name="password"
+                label="password"
+                value={customerInfo.password}
+                onChange={onChange}
+                error={errors.password}
+            />
+          
+            <input
+                type="submit"
+                disabled={saving}
+                value={saving ? 'not registered' : 'Save'}
+                className="btn btn-primary"
+                onClick={onSumit} />
+        </form>
     );
-  }
-}
+};
+
+// FortDetailsForm.propTypes = {
+//   fort: PropTypes.object.isRequired,
+//   errors: PropTypes.object
+// };
 
 export default SignIn;

@@ -1,34 +1,4 @@
-// const forts = [
-//     {
-//         fortImage_url: "http://placehold.it/120",
-//         fortName: "Golconda",
-//         fortPlace: "Hyderabad - Telangana",
-//         fortConstructedYear: 1500
-//     },
-
-//     {
-//         fortImage_url: "https://placehold.it/120",
-//         fortName: "Kamlah Fort",
-//         fortPlace: "Kamlah - Himachal Pradesh",
-//         fortConstructedYear: 1625
-//     },
-
-//     {
-//         fortImage_url: "http://placehold.it/120",
-//         fortName: "Golconda",
-//         fortPlace: "Hyderabad - Telangana",
-//         fortConstructedYear: 1500
-//     },
-
-//     {
-//         fortImage_url: "https://placehold.it/120",
-//         fortName: "Kamlah Fort",
-//         fortPlace: "Kamlah - Himachal Pradesh",
-//         fortConstructedYear: 1625
-//     }
-// ];
-
-
+import delay from './delay';
 
 const forts = [
     {
@@ -103,4 +73,45 @@ const forts = [
     }
 ];
 
-export default forts;
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
+//This would be performed on the server in a real app. Just stubbing in.
+const generateId = (fort) => {
+  return replaceAll(fort.fortName, ' ', '-');
+};
+
+class FortApi {
+    static getAllForts() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(Object.assign([], forts));
+            }, delay);
+        });
+    }
+
+    static saveFort(fort) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simulate server-side validation
+        const minCourseTitleLength = 1;
+        if (fort.fortName.length < minCourseTitleLength) {
+          reject(`Title must be at least ${minCourseTitleLength} characters.`);
+        }
+
+        if (fort._id) {
+          const existingFortIndex = forts.findIndex(a => a._id == fort._id);
+          forts.splice(existingFortIndex, 1, fort);
+        } else {
+          fort._id = generateId(fort);
+          forts.push(fort);
+        }
+
+        resolve(Object.assign({}, fort));
+      }, delay);
+    });
+  }
+}
+
+export default FortApi;
