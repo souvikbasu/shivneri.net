@@ -2,9 +2,9 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 
 
-const FortDetailsForm = ({ fort, onChange, errors,saving ,onSave}) => {
+const FortDetailsForm = ({ fort, onChange, errors, saving, onSave }) => {
     return (
-        <form>  
+        <form>
             <TextInput
                 name="fortName"
                 label="fortName"
