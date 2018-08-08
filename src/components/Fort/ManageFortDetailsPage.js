@@ -17,6 +17,7 @@ class ManageFortDetailsPage extends React.Component {
         }
         this.updateFortState = this.updateFortState.bind(this);
         this.saveCourse = this.saveCourse.bind(this);
+        this.deleteFort = this.deleteFort.bind(this);
     }
 
 
@@ -28,6 +29,7 @@ class ManageFortDetailsPage extends React.Component {
     saveCourse(event) {
         event.preventDefault();
         this.setState({ saving: true })
+        console.log("this is the response" , this.state.fort)
         this.props.actions.saveFort(this.state.fort).then(() => {
             this.redirect();
         }).catch((error) => {
@@ -35,6 +37,16 @@ class ManageFortDetailsPage extends React.Component {
             this.setState({ saving: false });
         })
     }
+
+    deleteFort(event) {
+        event.preventDefault();
+        this.props.actions.deleteFortById(this.state.fort).then(() => {
+            this.context.router.push('/');
+        }).catch((error) => {
+            toastr.error(error);
+        })
+    }
+
     redirect() {
         this.setState({ saving: false });
         toastr.success('Course saved.');
@@ -51,7 +63,15 @@ class ManageFortDetailsPage extends React.Component {
     render() {
         return (
             <div>
+               
                 <h1>ManageFort</h1>
+              <span>
+                <input
+                type="submit"
+                value={'Delete'}
+                className="btn btn-primary"
+                onClick={this.deleteFort} />
+                </span>
                 <FortDetailsForm
                     fort={this.state.fort}
                     onChange={this.updateFortState}
@@ -80,7 +100,7 @@ function getFortById(forts, id) {
 
 function mapStateToProps(state, ownProps) {
     let fortId = ownProps.params.id;
-    let fort = { _id: '', fortName: '', fortImage_url: 'http://placehold.it/120', fortPlace: '', fortConstructedYear: '' };
+    let fort = { _id: '', state: '', name: '', city: '', country: '',year:'', thumbnail:'',history:'',description:'',images:''};
     if (fortId && state.forts.length > 0) {
         fort = getFortById(state.forts, fortId);
     }

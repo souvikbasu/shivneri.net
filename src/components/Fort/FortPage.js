@@ -36,7 +36,7 @@ class FortPage extends React.Component {
           className="btn btn-primary"
           onClick={this.redirectToAddCoursePage}
         />
-        <FortFilter />
+        <FortFilter filterFort={this.props.forts}/>
         <SearchFort
           filterText={this.state.filterText}
           filterUpdate={this.filterUpdate}

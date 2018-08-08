@@ -2,7 +2,6 @@ import * as types from '../actions/actionTypes'
 import initialState from './initialState';
 
 export default function customerInfoReducer(state = initialState.customerInformations, action) {
-    debugger;
     switch (action.type) {
         case types.CREATE_CUSTOMERINFO_SUCCESS:
             return [

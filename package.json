@@ -15,7 +15,8 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "node-fetch": "^1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",

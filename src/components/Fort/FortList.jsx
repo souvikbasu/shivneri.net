@@ -7,20 +7,21 @@ const FortList = ({ filterText, forts }) => {
         return null;
     }
     const fortList = forts;
-    const filterfortName = fortList.filter(fort => fort.fortName.toLowerCase().indexOf(filterText) >= 0);
-    const filterFortPlace = fortList.filter(fort => fort.fortPlace.toLowerCase().indexOf(filterText) >= 0);
+    const filterFortName = fortList.filter(fort => fort.name.toLowerCase().indexOf(filterText) >= 0);
+    const filterFortCity = fortList.filter(fort => fort.city.toLowerCase().indexOf(filterText) >= 0);
+    const filterFortState = fortList.filter(fort => fort.state.toLowerCase().indexOf(filterText) >= 0);
     const getFort = (fortDetail, index) => {
         return <tr key={index}><FortListRaw {...fortDetail} /></tr>
     }
     return (
-        <div>
+        <div className="FortList">
             {filterText == "" ? '' : <div>
                 You are searching for {filterText}
             </div>}
             <table className="table">
                 <tbody>
                     <tr id="fortList" className="FortDetail">
-                        {fortList == null ? '' : (filterfortName.length != 0 ? filterfortName.map(getFort) : filterFortPlace.map(getFort))}
+                        {fortList == null ? '' : (filterFortName.length != 0 ? filterFortName.map(getFort) : (filterFortCity.map(getFort).length!=0)? filterFortCity.map(getFort):  filterFortState.map(getFort))}
                     </tr>
                 </tbody>
             </table>

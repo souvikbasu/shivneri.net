@@ -1,4 +1,5 @@
-import * as types from '../actions/actionTypes'
+import * as types from '../actions/actionTypes';
+import { browserHistory } from 'react-router';
 
 export default function fortReducer(state = [], action) {
     switch (action.type) {
@@ -15,6 +16,15 @@ export default function fortReducer(state = [], action) {
                 ...state.filter(fort=>fort._id!=action.fort._id),
                 Object.assign({}, action.fort)
             ];
+
+        case types.DELETE_FORT_SUCCESS:{
+               const newState = Object.assign([], action.fort);
+               const indexOfFortToDelete = state.findIndex( fort => {
+                   return fort._id==action.fort._id;
+               })
+               newState.splice(indexOfFortToDelete, 1);
+            return newState; 
+        }   
         default: return state;
     }
    
